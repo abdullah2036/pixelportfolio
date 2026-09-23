@@ -1,0 +1,92 @@
+:root {
+  --navy-950: #04060f;
+  --navy-900: #080d1e;
+  --navy-850: #0b1228;
+  --navy-800: #111a38;
+  --navy-700: #19244a;
+  --navy-600: #243162;
+  --ink: #efe7d6;
+  --ink-dim: #b3b9cf;
+  --ink-mute: #7a83a3;
+  --gold: #e0b560;
+  --gold-hi: #f6d58e;
+  --gold-lo: #8a6a32;
+  --ember: #ff9a4a;
+  --teal: #5fd0a8;
+  --paper: #dccfa9;
+  --paper-2: #cfc096;
+  --paper-ink: #2c2319;
+  --outline: #05070f;
+  --px: 3px;
+  --font-pixel: 'Silkscreen', 'Courier New', monospace;
+  --font-body: 'Pixelify Sans', system-ui, sans-serif;
+  --font-mono: 'VT323', 'Courier New', monospace;
+  color-scheme: dark;
+}
+
+@media (max-width: 760px), (max-height: 520px) {
+  :root { --px: 2px; }
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--navy-950);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+body {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, input, textarea, select { font: inherit; color: inherit; }
+
+a { color: var(--gold-hi); }
+
+:focus-visible {
+  outline: calc(var(--px) * 1) solid var(--gold-hi);
+  outline-offset: calc(var(--px) * 1);
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+.world-canvas {
+  position: fixed;
+  inset: 0;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  touch-action: none;
+  outline: none;
+}
+
+/* soft cinematic vignette over the world (free: composited by the browser) */
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 55%, transparent 55%, rgba(2, 3, 12, 0.55) 100%),
+    linear-gradient(to bottom, rgba(2, 4, 14, 0.25), transparent 22%);
+  z-index: 1;
+}
+
+.pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
